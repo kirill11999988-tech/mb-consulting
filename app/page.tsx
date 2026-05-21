@@ -1,227 +1,488 @@
 "use client";
 
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  TrendingUp,
-  ShieldCheck,
-  BarChart3,
-} from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0 },
 };
 
+const funnel = [
+  ["Лиды", "Нет понятного аватара квал-лида"],
+  ["Квалификация", "Менеджеры тратят время не на тех клиентов"],
+  ["Встреча", "Нет единого стандарта дожима"],
+  ["Сделка", "CRM и скрипты не помогают закрывать"],
+  ["Управление", "Решения принимаются по ощущениям"],
+];
+
+const beforeAfter = [
+  [
+    "До",
+    "Ручной контроль, хаотичная CRM, слабая отчётность и зависимость от отдельных менеджеров.",
+  ],
+  [
+    "После",
+    "Роли, KPI, аналитика, мотивация и контроль собраны в единую систему продаж.",
+  ],
+];
+
+const steps = [
+  [
+    "01",
+    "Диагностика",
+    "Находим потери в воронке, CRM, команде и управлении.",
+  ],
+  [
+    "02",
+    "Архитектура",
+    "Проектируем структуру отдела, KPI, роли и систему контроля.",
+  ],
+  [
+    "03",
+    "Внедрение",
+    "Настраиваем процессы, обучаем команду и запускаем систему.",
+  ],
+  [
+    "04",
+    "Рост",
+    "Контролируем цифры и улучшаем конверсии на каждом этапе.",
+  ],
+];
+
 export default function Home() {
+  const [form, setForm] = useState({
+    name: "",
+    contact: "",
+    niche: "",
+    problem: "",
+  });
+
+  const [status, setStatus] = useState("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error();
+
+      setStatus("success");
+
+      setForm({
+        name: "",
+        contact: "",
+        niche: "",
+        problem: "",
+      });
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
-    <main className="min-h-screen overflow-hidden bg-[#07110B] text-white">
-      {/* BACKGROUND */}
-      <div className="pointer-events-none fixed inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,255,140,0.18),transparent_35%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(0,255,140,0.10),transparent_30%)]" />
-      </div>
+    <main className="min-h-screen bg-[#03190C] text-white overflow-hidden">
+      <section className="relative px-6 py-8 md:px-12 lg:px-20">
+        <div className="absolute inset-0 bg-[linear-gradient(115deg,#03190C_0%,#03190C_55%,#0B2D18_100%)]" />
 
-      {/* HERO */}
-      <section className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-20 px-6 pb-24 pt-12 md:grid-cols-2 md:px-10 lg:min-h-screen">
-        {/* LEFT */}
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 0.8 }}
-          className="relative z-10"
-        >
-          <div className="mb-8 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm tracking-[0.28em] text-white/60 backdrop-blur">
-            ПОСТРОЕНИЕ ОТДЕЛОВ ПРОДАЖ ПОД КЛЮЧ
-          </div>
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.14, scale: 1 }}
+          transition={{ duration: 1.2 }}
+          className="absolute -right-40 top-10 h-[650px] w-[650px] rounded-full bg-white blur-3xl"
+        />
 
-          <h1 className="max-w-3xl font-serif text-[64px] leading-[0.95] tracking-[-0.04em] text-white md:text-[92px]">
-            Превращаем продажи в предсказуемую систему роста
-          </h1>
+        <div className="relative mx-auto max-w-7xl">
+          <header className="flex items-center justify-between border-b border-white/10 pb-6">
+            <div>
+              <div className="font-serif text-2xl tracking-wide">
+                MB Consulting
+              </div>
 
-          <p className="mt-10 max-w-2xl text-[24px] leading-[1.7] text-white/65">
-            Выстраиваем отдел продаж, CRM, аналитику, скрипты,
-            мотивацию и управление командой — чтобы бизнес рос за
-            счёт системы, а не ручного контроля.
-          </p>
-
-          <div className="mt-14 flex flex-wrap gap-5">
-            <button className="group flex items-center gap-3 rounded-full bg-white px-9 py-5 text-lg font-medium text-black transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(255,255,255,0.12)]">
-              Получить диагностику
-              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-
-            <button className="rounded-full border border-white/15 bg-white/5 px-9 py-5 text-lg text-white/90 backdrop-blur transition-all duration-300 hover:border-white/30 hover:bg-white/10">
-              Смотреть кейс
-            </button>
-          </div>
-        </motion.div>
-
-        {/* RIGHT IMAGE */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="relative h-[620px] overflow-hidden rounded-[36px] bg-[#071F10]"
-        >
-          {/* PHOTO */}
-          <img
-            src="/hero-photo.png"
-            alt="MB Consulting"
-            className="h-full w-full object-contain object-center"
-          />
-
-          {/* DARK OVERLAY */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-          {/* FLOATING CARD */}
-          <motion.div
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute bottom-10 left-8 right-8 rounded-[32px] border border-white/10 bg-white/10 p-8 backdrop-blur-xl"
-          >
-            <div className="text-sm tracking-[0.35em] text-white/50">
-              MB CONSULTING
+              <div className="mt-1 text-xs uppercase tracking-[0.3em] text-white/45">
+                sales architecture
+              </div>
             </div>
 
-            <div className="mt-5 font-serif text-6xl text-white">
-              18–25%
-            </div>
-
-            <p className="mt-4 max-w-sm text-xl leading-relaxed text-white/70">
-              средний рост конверсий после внедрения системы продаж
-            </p>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* SOCIAL PROOF */}
-      <section className="relative border-t border-white/10">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-24 md:grid-cols-3 md:px-10">
-          {[
-            {
-              icon: TrendingUp,
-              title: "Рост продаж",
-              text: "Системно увеличиваем конверсии и управляемость отдела продаж.",
-            },
-            {
-              icon: BarChart3,
-              title: "Прозрачная аналитика",
-              text: "CRM, отчёты, KPI и контроль цифр в одном контуре.",
-            },
-            {
-              icon: ShieldCheck,
-              title: "Операционная устойчивость",
-              text: "Бизнес перестаёт зависеть от ручного контроля собственника.",
-            },
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -6 }}
-              className="rounded-[30px] border border-white/10 bg-white/[0.04] p-10 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+            <a
+              href="#lead"
+              className="rounded-full border border-white/20 px-5 py-3 text-sm text-white/80 transition hover:bg-white hover:text-[#03190C]"
             >
-              <item.icon className="h-8 w-8 text-[#8CFFB4]" />
+              Оставить заявку
+            </a>
+          </header>
 
-              <h3 className="mt-8 text-2xl font-semibold text-white">
-                {item.title}
-              </h3>
-
-              <p className="mt-4 text-lg leading-relaxed text-white/60">
-                {item.text}
+          <div className="grid min-h-[82vh] gap-20 py-20 md:grid-cols-[1fr_1fr] md:items-center">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.8 }}
+            >
+              <p className="mb-7 max-w-xl text-sm uppercase tracking-[0.28em] text-white/45">
+                Построение отделов продаж под ключ
               </p>
+
+              <h1 className="max-w-4xl font-serif text-4xl leading-[1.02] tracking-tight md:text-6xl lg:text-7xl">
+                Превращаем продажи в предсказуемую систему роста
+              </h1>
+
+              <p className="mt-8 max-w-2xl text-lg leading-8 text-white/68">
+                Выстраиваем отдел продаж, CRM, аналитику, скрипты,
+                мотивацию и управление командой — чтобы бизнес рос
+                за счёт системы, а не ручного контроля.
+              </p>
+
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                <a
+                  href="#lead"
+                  className="rounded-full bg-white px-8 py-4 text-center font-medium text-[#03190C] transition hover:scale-[1.02]"
+                >
+                  Получить диагностику
+                </a>
+
+                <a
+                  href="#case"
+                  className="rounded-full border border-white/20 px-8 py-4 text-center text-white/80 transition hover:bg-white/10"
+                >
+                  Смотреть кейс
+                </a>
+              </div>
             </motion.div>
-          ))}
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="relative h-[620px] overflow-hidden rounded-[36px] bg-[#071F10]"
+            >
+              <img
+                src="/hero-photo.png"
+                alt="MB Consulting"
+                className="absolute bottom-0 left-1/2 h-[112%] max-w-none -translate-x-1/2 object-contain"
+              />
+
+              <div className="absolute inset-0 bg-black/35" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="max-w-sm rounded-[28px] border border-white/15 bg-white/10 p-6 backdrop-blur-md"
+                >
+                  <div className="text-sm uppercase tracking-[0.25em] text-white/60">
+                    MB Consulting
+                  </div>
+
+                  <div className="mt-4 font-serif text-5xl text-white">
+                    18–25%
+                  </div>
+
+                  <p className="mt-3 text-white/75">
+                    средний рост конверсий после внедрения системы продаж
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* CASE */}
-      <section className="relative border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-28 md:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="rounded-[42px] border border-white/10 bg-white/[0.04] p-10 md:p-16 backdrop-blur-xl"
-          >
-            <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-2xl">
-                <div className="mb-6 text-sm tracking-[0.3em] text-white/45">
-                  КЕЙС
+      <AnimatedSection className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionLabel dark>Диагностика потерь</SectionLabel>
+
+          <h2 className="mt-5 max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
+            Деньги теряются не “в продажах”, а в конкретных этапах воронки
+          </h2>
+
+          <div className="mt-14 grid gap-px overflow-hidden border border-[#03190C]/10 bg-[#03190C]/10 md:grid-cols-5">
+            {funnel.map(([title, text], index) => (
+              <motion.div
+                key={title}
+                whileHover={{ y: -6 }}
+                className="bg-[#F6F3EC] p-7 transition"
+              >
+                <div className="font-serif text-5xl text-[#03190C]/20">
+                  0{index + 1}
                 </div>
 
-                <h2 className="font-serif text-5xl leading-tight text-white">
-                  Как мы увеличили конверсию отдела продаж на 23%
-                </h2>
+                <h3 className="mt-10 text-2xl font-medium">{title}</h3>
 
-                <p className="mt-8 text-xl leading-relaxed text-white/65">
-                  Внедрили CRM, скрипты продаж, аналитику,
-                  мотивацию менеджеров и систему контроля.
-                  За 4 месяца компания получила стабильный рост
-                  без увеличения рекламного бюджета.
+                <p className="mt-5 leading-7 text-[#03190C]/65">{text}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="px-6 py-24 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionLabel>Трансформация</SectionLabel>
+
+          <h2 className="mt-5 max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
+            Мы не “улучшаем скрипты”. Мы собираем управляемую систему продаж
+          </h2>
+
+          <div className="mt-14 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2">
+            {beforeAfter.map(([title, text]) => (
+              <div key={title} className="bg-[#03190C] p-8 md:p-10">
+                <div className="text-sm uppercase tracking-[0.28em] text-white/35">
+                  {title}
+                </div>
+
+                <p className="mt-8 max-w-xl text-2xl leading-10 text-white/78">
+                  {text}
                 </p>
               </div>
-
-              <div className="w-full max-w-md rounded-[32px] border border-white/10 bg-black/20 p-8">
-                <div className="text-lg text-white/90">
-                  “После внедрения системы мы впервые начали
-                  видеть прогнозируемый рост и перестали
-                  тушить пожары каждый день.”
-                </div>
-
-                <div className="mt-8">
-                  <div className="font-medium text-white">
-                    Александр М.
-                  </div>
-
-                  <div className="mt-1 text-white/45">
-                    CEO производственной компании
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            ))}
+          </div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      {/* CTA */}
-      <section className="relative border-t border-white/10">
-        <div className="mx-auto max-w-5xl px-6 py-28 text-center md:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-serif text-5xl leading-tight text-white md:text-7xl">
-              Построим систему продаж,
-              <br />
-              которая работает без хаоса
+      <AnimatedSection
+        id="case"
+        className="bg-white px-6 py-24 text-[#03190C] md:px-12 lg:px-20"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.8fr_1.2fr]">
+          <div className="md:sticky md:top-8 md:self-start">
+            <SectionLabel dark>Кейс</SectionLabel>
+
+            <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
+              +18% к конверсии из лида в договор
             </h2>
 
-            <p className="mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-white/60">
-              Проведём диагностику, покажем точки роста и
-              подготовим план внедрения под ваш бизнес.
+            <p className="mt-6 text-lg leading-8 text-[#03190C]/65">
+              Результат первого месяца после пересборки процессов, CRM и
+              системы управления отделом.
             </p>
+          </div>
 
-            <button className="mt-14 rounded-full bg-white px-10 py-5 text-lg font-medium text-black transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_50px_rgba(255,255,255,0.12)]">
-              Обсудить проект
-            </button>
-          </motion.div>
+          <div className="border border-[#03190C]/10">
+            <CaseRow
+              left="До проекта"
+              right="CRM велась формально, показатели не были оцифрованы, менеджеры не дожимали клиентов."
+            />
+
+            <CaseRow
+              left="Что сделали"
+              right="Пересобрали воронку, скрипты, роли и внедрили систему контроля показателей."
+            />
+
+            <CaseRow
+              left="Результат"
+              right="Конверсии выросли без увеличения рекламного бюджета."
+            />
+
+            <div className="bg-[#F6F3EC] p-8 md:p-10">
+              <div className="text-sm uppercase tracking-[0.28em] text-[#03190C]/45">
+                Отзыв клиента
+              </div>
+
+              <blockquote className="mt-6 font-serif text-3xl leading-tight text-[#03190C]">
+                “После внедрения стало понятно, где мы теряем клиентов и как
+                управлять отделом не на ощущениях, а по цифрам.”
+              </blockquote>
+
+              <p className="mt-5 text-[#03190C]/55">
+                Из интервью с клиентом проекта
+              </p>
+            </div>
+          </div>
         </div>
-      </section>
+      </AnimatedSection>
+
+      <AnimatedSection className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionLabel dark>Процесс</SectionLabel>
+
+          <h2 className="mt-5 max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
+            От диагностики до работающей системы продаж
+          </h2>
+
+          <div className="mt-14 grid gap-px overflow-hidden border border-[#03190C]/10 bg-[#03190C]/10 md:grid-cols-4">
+            {steps.map(([num, title, text]) => (
+              <div key={num} className="bg-[#F6F3EC] p-7">
+                <div className="font-serif text-5xl text-[#03190C]/20">
+                  {num}
+                </div>
+
+                <h3 className="mt-10 text-2xl font-medium">{title}</h3>
+
+                <p className="mt-5 leading-7 text-[#03190C]/65">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection
+        id="lead"
+        className="px-6 py-24 md:px-12 lg:px-20"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SectionLabel>Следующий шаг</SectionLabel>
+
+            <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
+              Разберём вашу систему продаж и покажем точки роста
+            </h2>
+
+            <p className="mt-6 max-w-xl text-lg leading-8 text-white/65">
+              На встрече определим ограничения, приоритеты внедрения и план
+              действий.
+            </p>
+          </div>
+
+          <motion.form
+            whileHover={{ y: -4 }}
+            onSubmit={handleSubmit}
+            className="border border-white/12 bg-white p-6 text-[#03190C] md:p-8"
+          >
+            <div className="grid gap-5">
+              <Input
+                label="Имя"
+                value={form.name}
+                onChange={(v) => setForm({ ...form, name: v })}
+                required
+              />
+
+              <Input
+                label="Телефон или Telegram"
+                value={form.contact}
+                onChange={(v) => setForm({ ...form, contact: v })}
+                required
+              />
+
+              <Input
+                label="Ниша бизнеса"
+                value={form.niche}
+                onChange={(v) => setForm({ ...form, niche: v })}
+              />
+
+              <label className="grid gap-2 text-sm font-medium">
+                Что сейчас не устраивает?
+                <textarea
+                  value={form.problem}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      problem: e.target.value,
+                    })
+                  }
+                  rows={4}
+                  className="resize-none border border-[#03190C]/15 bg-[#F6F3EC] px-4 py-3 outline-none transition focus:border-[#03190C]"
+                />
+              </label>
+            </div>
+
+            <button
+              disabled={status === "loading"}
+              className="mt-7 w-full bg-[#03190C] px-7 py-4 font-medium text-white transition hover:opacity-90 disabled:opacity-60"
+            >
+              {status === "loading" ? "Отправляем..." : "Оставить заявку"}
+            </button>
+
+            {status === "success" && (
+              <p className="mt-4 text-sm text-[#03190C]">
+                Заявка отправлена.
+              </p>
+            )}
+
+            {status === "error" && (
+              <p className="mt-4 text-sm text-red-600">Ошибка отправки.</p>
+            )}
+          </motion.form>
+        </div>
+      </AnimatedSection>
     </main>
+  );
+}
+
+function AnimatedSection({
+  children,
+  className,
+  id,
+}: {
+  children: React.ReactNode;
+  className: string;
+  id?: string;
+}) {
+  return (
+    <motion.section
+      id={id}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-120px" }}
+      transition={{ duration: 0.7 }}
+      className={className}
+    >
+      {children}
+    </motion.section>
+  );
+}
+
+function SectionLabel({
+  children,
+  dark,
+}: {
+  children: React.ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <div
+      className={`text-sm uppercase tracking-[0.28em] ${
+        dark ? "text-[#03190C]/45" : "text-white/35"
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function CaseRow({ left, right }: { left: string; right: string }) {
+  return (
+    <div className="grid border-b border-[#03190C]/10 last:border-b-0 md:grid-cols-[0.35fr_0.65fr]">
+      <div className="border-b border-[#03190C]/10 p-6 text-sm uppercase tracking-[0.2em] text-[#03190C]/45 md:border-b-0 md:border-r">
+        {left}
+      </div>
+
+      <div className="p-6 text-lg leading-8 text-[#03190C]/75">{right}</div>
+    </div>
+  );
+}
+
+function Input({
+  label,
+  value,
+  onChange,
+  required,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  required?: boolean;
+}) {
+  return (
+    <label className="grid gap-2 text-sm font-medium">
+      {label}
+
+      <input
+        required={required}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="border border-[#03190C]/15 bg-[#F6F3EC] px-4 py-3 outline-none transition focus:border-[#03190C]"
+      />
+    </label>
   );
 }
