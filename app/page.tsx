@@ -17,8 +17,14 @@ const funnel = [
 ];
 
 const beforeAfter = [
-  ["До", "Ручной контроль, хаотичная CRM, слабая отчётность и зависимость от отдельных менеджеров."],
-  ["После", "Роли, KPI, аналитика, мотивация и контроль собраны в единую систему продаж."],
+  [
+    "До",
+    "Ручной контроль, хаотичная CRM, слабая отчётность и зависимость от отдельных менеджеров.",
+  ],
+  [
+    "После",
+    "Роли, KPI, аналитика, мотивация и контроль собраны в единую систему продаж.",
+  ],
 ];
 
 const steps = [
@@ -130,12 +136,12 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="relative h-[760px] overflow-hidden rounded-[42px] bg-[#071F10]"
+              className="relative h-[690px] overflow-hidden rounded-[42px] bg-[#071F10]"
             >
               <img
                 src="/hero-photo.png"
                 alt="MB Consulting"
-                className="absolute bottom-0 left-1/2 w-[88%] max-w-none -translate-x-1/2 object-contain"
+                className="absolute -bottom-16 left-1/2 w-[88%] max-w-none -translate-x-1/2 object-contain"
               />
 
               <div className="absolute inset-0 bg-black/25" />
@@ -143,13 +149,13 @@ export default function Home() {
               <div className="absolute bottom-8 left-8 right-8">
                 <motion.div
                   whileHover={{ y: -4 }}
-                  className="max-w-md rounded-[30px] border border-white/15 bg-white/10 p-7 backdrop-blur-xl"
+                  className="max-w-[420px] rounded-[30px] border border-white/15 bg-white/10 p-7 backdrop-blur-xl"
                 >
                   <div className="text-sm uppercase tracking-[0.3em] text-white/60">
                     MB CONSULTING
                   </div>
 
-                  <div className="mt-5 font-serif text-6xl text-white">18–25%</div>
+                  <div className="mt-5 font-serif text-5xl text-white">18–25%</div>
 
                   <p className="mt-4 text-lg leading-8 text-white/75">
                     средний рост конверсий после внедрения системы продаж
