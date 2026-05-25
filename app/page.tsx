@@ -141,7 +141,7 @@ export default function Home() {
               <img
                 src="/hero-photo.png"
                 alt="MB Consulting"
-                className="absolute left-1/2 top-1/2 w-[96%] max-w-none -translate-x-1/2 -translate-y-[54%] object-contain"
+                className="absolute left-1/2 top-1/2 w-[108%] max-w-none -translate-x-1/2 -translate-y-[54%] object-contain"
               />
 
               <div className="absolute inset-0 bg-black/22" />
