@@ -17,37 +17,15 @@ const funnel = [
 ];
 
 const beforeAfter = [
-  [
-    "До",
-    "Ручной контроль, хаотичная CRM, слабая отчётность и зависимость от отдельных менеджеров.",
-  ],
-  [
-    "После",
-    "Роли, KPI, аналитика, мотивация и контроль собраны в единую систему продаж.",
-  ],
+  ["До", "Ручной контроль, хаотичная CRM, слабая отчётность и зависимость от отдельных менеджеров."],
+  ["После", "Роли, KPI, аналитика, мотивация и контроль собраны в единую систему продаж."],
 ];
 
 const steps = [
-  [
-    "01",
-    "Диагностика",
-    "Находим потери в воронке, CRM, команде и управлении.",
-  ],
-  [
-    "02",
-    "Архитектура",
-    "Проектируем структуру отдела, KPI, роли и систему контроля.",
-  ],
-  [
-    "03",
-    "Внедрение",
-    "Настраиваем процессы, обучаем команду и запускаем систему.",
-  ],
-  [
-    "04",
-    "Рост",
-    "Контролируем цифры и улучшаем конверсии на каждом этапе.",
-  ],
+  ["01", "Диагностика", "Находим потери в воронке, CRM, команде и управлении."],
+  ["02", "Архитектура", "Проектируем структуру отдела, KPI, роли и систему контроля."],
+  ["03", "Внедрение", "Настраиваем процессы, обучаем команду и запускаем систему."],
+  ["04", "Рост", "Контролируем цифры и улучшаем конверсии на каждом этапе."],
 ];
 
 export default function Home() {
@@ -62,28 +40,19 @@ export default function Home() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     setStatus("loading");
 
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
       if (!res.ok) throw new Error();
 
       setStatus("success");
-
-      setForm({
-        name: "",
-        contact: "",
-        niche: "",
-        problem: "",
-      });
+      setForm({ name: "", contact: "", niche: "", problem: "" });
     } catch {
       setStatus("error");
     }
@@ -104,10 +73,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl">
           <header className="flex items-center justify-between border-b border-white/10 pb-6">
             <div>
-              <div className="font-serif text-2xl tracking-wide">
-                MB Consulting
-              </div>
-
+              <div className="font-serif text-2xl tracking-wide">MB Consulting</div>
               <div className="mt-1 text-xs uppercase tracking-[0.3em] text-white/45">
                 sales architecture
               </div>
@@ -137,9 +103,9 @@ export default function Home() {
               </h1>
 
               <p className="mt-8 max-w-2xl text-lg leading-8 text-white/68">
-                Выстраиваем отдел продаж, CRM, аналитику, скрипты,
-                мотивацию и управление командой — чтобы бизнес рос
-                за счёт системы, а не ручного контроля.
+                Выстраиваем отдел продаж, CRM, аналитику, скрипты, мотивацию и
+                управление командой — чтобы бизнес рос за счёт системы, а не
+                ручного контроля.
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -160,55 +126,40 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-  variants={fadeUp}
-  initial="hidden"
-  animate="visible"
-  transition={{ duration: 0.8, delay: 0.15 }}
-  className="relative h-[760px] overflow-hidden rounded-[42px] bg-[#071F10]"
->
-  <img
-    src="/hero-photo.png"
-    alt="MB Consulting"
-    className="
-      absolute
-      bottom-0
-      left-1/2
-      w-[88%]
-      max-w-none
-      -translate-x-1/2
-      object-contain
-    "
-  />
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="relative h-[760px] overflow-hidden rounded-[42px] bg-[#071F10]"
+            >
+              <img
+                src="/hero-photo.png"
+                alt="MB Consulting"
+                className="absolute bottom-0 left-1/2 w-[88%] max-w-none -translate-x-1/2 object-contain"
+              />
 
-  <div className="absolute inset-0 bg-black/25" />
+              <div className="absolute inset-0 bg-black/25" />
 
-  <div className="absolute bottom-8 left-8 right-8">
-    <motion.div
-      whileHover={{ y: -4 }}
-      className="
-        max-w-md
-        rounded-[30px]
-        border
-        border-white/15
-        bg-white/10
-        p-7
-        backdrop-blur-xl
-      "
-    >
-      <div className="text-sm uppercase tracking-[0.3em] text-white/60">
-        MB CONSULTING
-      </div>
+              <div className="absolute bottom-8 left-8 right-8">
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="max-w-md rounded-[30px] border border-white/15 bg-white/10 p-7 backdrop-blur-xl"
+                >
+                  <div className="text-sm uppercase tracking-[0.3em] text-white/60">
+                    MB CONSULTING
+                  </div>
 
-      <div className="mt-5 font-serif text-6xl text-white">
-        18–25%
-      </div>
+                  <div className="mt-5 font-serif text-6xl text-white">18–25%</div>
 
-      <p className="mt-4 text-lg leading-8 text-white/75">
-        средний рост конверсий после внедрения системы продаж
-      </p>
-    </motion.div>
-  </div>
-</motion.div>
+                  <p className="mt-4 text-lg leading-8 text-white/75">
+                    средний рост конверсий после внедрения системы продаж
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       <AnimatedSection className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
@@ -230,7 +181,6 @@ export default function Home() {
                 </div>
 
                 <h3 className="mt-10 text-2xl font-medium">{title}</h3>
-
                 <p className="mt-5 leading-7 text-[#03190C]/65">{text}</p>
               </motion.div>
             ))}
@@ -330,7 +280,6 @@ export default function Home() {
                 </div>
 
                 <h3 className="mt-10 text-2xl font-medium">{title}</h3>
-
                 <p className="mt-5 leading-7 text-[#03190C]/65">{text}</p>
               </div>
             ))}
@@ -338,10 +287,7 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection
-        id="lead"
-        className="px-6 py-24 md:px-12 lg:px-20"
-      >
+      <AnimatedSection id="lead" className="px-6 py-24 md:px-12 lg:px-20">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.9fr_1.1fr]">
           <div>
             <SectionLabel>Следующий шаг</SectionLabel>
@@ -406,9 +352,7 @@ export default function Home() {
             </button>
 
             {status === "success" && (
-              <p className="mt-4 text-sm text-[#03190C]">
-                Заявка отправлена.
-              </p>
+              <p className="mt-4 text-sm text-[#03190C]">Заявка отправлена.</p>
             )}
 
             {status === "error" && (
