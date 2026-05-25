@@ -8,30 +8,92 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-const funnel = [
-  ["Лиды", "Нет понятного аватара квал-лида"],
-  ["Квалификация", "Менеджеры тратят время не на тех клиентов"],
-  ["Встреча", "Нет единого стандарта дожима"],
-  ["Сделка", "CRM и скрипты не помогают закрывать"],
-  ["Управление", "Решения принимаются по ощущениям"],
-];
-
-const beforeAfter = [
+const pains = [
   [
-    "До",
-    "Ручной контроль, хаотичная CRM, слабая отчётность и зависимость от отдельных менеджеров.",
+    "Лиды обрабатываются часами",
+    "Реклама дорожает, а заявки тухнут ещё до первого звонка.",
   ],
   [
-    "После",
-    "Роли, KPI, аналитика, мотивация и контроль собраны в единую систему продаж.",
+    "CRM существует для отчётности",
+    "Менеджеры заполняют поля. Руководитель всё равно ничего не видит.",
+  ],
+  [
+    "Продажи держатся на 1–2 “звёздах”",
+    "Один сотрудник уходит — и выручка падает.",
+  ],
+  [
+    "Собственник сам тушит пожары",
+    "Если без вас продажи останавливаются — системы нет.",
+  ],
+  [
+    "Нет управляемости",
+    "Вы не понимаете, где теряются сделки, почему падает конверсия и кто реально приносит деньги.",
+  ],
+];
+
+const changes = [
+  [
+    "Управляемая воронка",
+    "Вы видите, где теряются деньги.",
+  ],
+  [
+    "KPI, которые влияют на выручку",
+    "Не “активность ради активности”.",
+  ],
+  [
+    "CRM, которой пользуются",
+    "А не саботируют.",
+  ],
+  [
+    "Контроль без микроменеджмента",
+    "Собственник перестаёт жить в звонках и чатах.",
+  ],
+  [
+    "Масштабируемый отдел продаж",
+    "Рост без зависимости от конкретных людей.",
+  ],
+];
+
+const antiMarket = [
+  [
+    "CRM ≠ система продаж",
+    "Большинство компаний просто делают хаос “цифровым”.",
+  ],
+  [
+    "Скрипты не спасают слабый процесс",
+    "Если лиды обрабатываются хаотично — скрипт бесполезен.",
+  ],
+  [
+    "Нельзя масштабировать ручное управление",
+    "Пока собственник контролирует всё сам — бизнес упирается в потолок.",
+  ],
+  [
+    "Нельзя улучшить то, что не измеряется",
+    "Если нет цифр — нет управления.",
   ],
 ];
 
 const steps = [
-  ["01", "Диагностика", "Находим потери в воронке, CRM, команде и управлении."],
-  ["02", "Архитектура", "Проектируем структуру отдела, KPI, роли и систему контроля."],
-  ["03", "Внедрение", "Настраиваем процессы, обучаем команду и запускаем систему."],
-  ["04", "Рост", "Контролируем цифры и улучшаем конверсии на каждом этапе."],
+  [
+    "01",
+    "Диагностика",
+    "Находим, где бизнес теряет деньги прямо сейчас.",
+  ],
+  [
+    "02",
+    "Архитектура системы",
+    "Строим воронку, KPI, структуру, процессы и CRM-логику.",
+  ],
+  [
+    "03",
+    "Внедрение",
+    "Не “рекомендации в PDF”, а внедрение в реальный бизнес.",
+  ],
+  [
+    "04",
+    "Контроль и масштабирование",
+    "Чтобы система работала без постоянного ручного управления.",
+  ],
 ];
 
 export default function Home() {
@@ -79,7 +141,9 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl">
           <header className="flex items-center justify-between border-b border-white/10 pb-6">
             <div>
-              <div className="font-serif text-2xl tracking-wide">MB Consulting</div>
+              <div className="font-serif text-2xl tracking-wide">
+                MB Consulting
+              </div>
               <div className="mt-1 text-xs uppercase tracking-[0.3em] text-white/45">
                 sales architecture
               </div>
@@ -123,10 +187,10 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="#case"
+                  href="#pains"
                   className="rounded-full border border-white/20 px-8 py-4 text-center text-white/80 transition hover:bg-white/10"
                 >
-                  Смотреть кейс
+                  Где теряются деньги
                 </a>
               </div>
             </motion.div>
@@ -155,7 +219,9 @@ export default function Home() {
                     MB CONSULTING
                   </div>
 
-                  <div className="mt-5 font-serif text-5xl text-white">18–25%</div>
+                  <div className="mt-5 font-serif text-5xl text-white">
+                    18–25%
+                  </div>
 
                   <p className="mt-4 text-lg leading-8 text-white/75">
                     средний рост конверсий после внедрения системы продаж
@@ -167,27 +233,38 @@ export default function Home() {
         </div>
       </section>
 
-      <AnimatedSection className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
+      <AnimatedSection
+        id="pains"
+        className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20"
+      >
         <div className="mx-auto max-w-7xl">
-          <SectionLabel dark>Диагностика потерь</SectionLabel>
+          <SectionLabel dark>Боль</SectionLabel>
 
-          <h2 className="mt-5 max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
-            Деньги теряются не “в продажах”, а в конкретных этапах воронки
+          <h2 className="mt-5 max-w-5xl font-serif text-4xl leading-tight md:text-6xl">
+            Большинство компаний теряют деньги не в маркетинге. А внутри отдела
+            продаж.
           </h2>
 
-          <div className="mt-14 grid gap-px overflow-hidden border border-[#03190C]/10 bg-[#03190C]/10 md:grid-cols-5">
-            {funnel.map(([title, text], index) => (
+          <div className="mt-14 grid gap-px overflow-hidden border border-[#03190C]/10 bg-[#03190C]/10 md:grid-cols-2">
+            {pains.map(([title, text], index) => (
               <motion.div
                 key={title}
-                whileHover={{ y: -6 }}
-                className="bg-[#F6F3EC] p-7 transition"
+                whileHover={{ y: -4 }}
+                className={`bg-[#F6F3EC] p-7 md:p-8 ${
+                  index === 4 ? "md:col-span-2" : ""
+                }`}
               >
-                <div className="font-serif text-5xl text-[#03190C]/20">
-                  0{index + 1}
+                <div className="text-sm uppercase tracking-[0.22em] text-[#03190C]/35">
+                  Проблема 0{index + 1}
                 </div>
 
-                <h3 className="mt-10 text-2xl font-medium">{title}</h3>
-                <p className="mt-5 leading-7 text-[#03190C]/65">{text}</p>
+                <h3 className="mt-8 text-2xl font-medium leading-tight">
+                  {title}
+                </h3>
+
+                <p className="mt-5 max-w-2xl text-lg leading-8 text-[#03190C]/65">
+                  {text}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -195,21 +272,85 @@ export default function Home() {
       </AnimatedSection>
 
       <AnimatedSection className="px-6 py-24 md:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-[0.9fr_1.1fr] md:items-start">
+          <div>
+            <SectionLabel>Позиционирование</SectionLabel>
+
+            <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
+              Мы не “обучаем продажам”.
+            </h2>
+
+            <p className="mt-6 max-w-xl text-2xl leading-10 text-white/78">
+              Мы перестраиваем систему, из-за которой бизнес теряет деньги.
+            </p>
+          </div>
+
+          <div className="border-l border-white/10 pl-8 md:pl-12">
+            <p className="text-xl leading-9 text-white/70">
+              Большинство “экспертов по продажам” дают мотивацию, продают
+              скрипты, внедряют CRM или проводят тренинги. И через 2 месяца всё
+              возвращается обратно.
+            </p>
+
+            <div className="my-10 h-px w-full bg-white/10" />
+
+            <p className="font-serif text-3xl leading-tight text-white md:text-4xl">
+              Потому что проблема не в скриптах.
+            </p>
+
+            <p className="mt-6 text-xl leading-9 text-white/70">
+              Проблема — в отсутствии системы управления продажами.
+            </p>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="bg-white px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionLabel>Трансформация</SectionLabel>
+          <SectionLabel dark>Что меняется после внедрения</SectionLabel>
 
           <h2 className="mt-5 max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
-            Мы не “улучшаем скрипты”. Мы собираем управляемую систему продаж
+            Продажи становятся управляемой системой, а не набором героических
+            усилий.
           </h2>
 
-          <div className="mt-14 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2">
-            {beforeAfter.map(([title, text]) => (
-              <div key={title} className="bg-[#03190C] p-8 md:p-10">
-                <div className="text-sm uppercase tracking-[0.28em] text-white/35">
-                  {title}
+          <div className="mt-14 grid gap-px overflow-hidden border border-[#03190C]/10 bg-[#03190C]/10 md:grid-cols-5">
+            {changes.map(([title, text], index) => (
+              <motion.div
+                key={title}
+                whileHover={{ y: -6 }}
+                className="bg-white p-7 transition"
+              >
+                <div className="font-serif text-5xl text-[#03190C]/20">
+                  0{index + 1}
                 </div>
 
-                <p className="mt-8 max-w-xl text-2xl leading-10 text-white/78">
+                <h3 className="mt-10 text-2xl font-medium leading-tight">
+                  {title}
+                </h3>
+
+                <p className="mt-5 leading-7 text-[#03190C]/65">{text}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <SectionLabel dark>Антирыночный блок</SectionLabel>
+
+            <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
+              Почему большинство внедрений продаж не работают
+            </h2>
+          </div>
+
+          <div className="grid gap-px overflow-hidden border border-[#03190C]/10 bg-[#03190C]/10">
+            {antiMarket.map(([title, text]) => (
+              <div key={title} className="bg-[#F6F3EC] p-7 md:p-8">
+                <h3 className="text-2xl font-medium leading-tight">{title}</h3>
+                <p className="mt-4 text-lg leading-8 text-[#03190C]/65">
                   {text}
                 </p>
               </div>
@@ -218,100 +359,63 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection
-        id="case"
-        className="bg-white px-6 py-24 text-[#03190C] md:px-12 lg:px-20"
-      >
-        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.8fr_1.2fr]">
-          <div className="md:sticky md:top-8 md:self-start">
-            <SectionLabel dark>Кейс</SectionLabel>
-
-            <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
-              +18% к конверсии из лида в договор
-            </h2>
-
-            <p className="mt-6 text-lg leading-8 text-[#03190C]/65">
-              Результат первого месяца после пересборки процессов, CRM и
-              системы управления отделом.
-            </p>
-          </div>
-
-          <div className="border border-[#03190C]/10">
-            <CaseRow
-              left="До проекта"
-              right="CRM велась формально, показатели не были оцифрованы, менеджеры не дожимали клиентов."
-            />
-
-            <CaseRow
-              left="Что сделали"
-              right="Пересобрали воронку, скрипты, роли и внедрили систему контроля показателей."
-            />
-
-            <CaseRow
-              left="Результат"
-              right="Конверсии выросли без увеличения рекламного бюджета."
-            />
-
-            <div className="bg-[#F6F3EC] p-8 md:p-10">
-              <div className="text-sm uppercase tracking-[0.28em] text-[#03190C]/45">
-                Отзыв клиента
-              </div>
-
-              <blockquote className="mt-6 font-serif text-3xl leading-tight text-[#03190C]">
-                “После внедрения стало понятно, где мы теряем клиентов и как
-                управлять отделом не на ощущениях, а по цифрам.”
-              </blockquote>
-
-              <p className="mt-5 text-[#03190C]/55">
-                Из интервью с клиентом проекта
-              </p>
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      <AnimatedSection className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
+      <AnimatedSection className="px-6 py-24 md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionLabel dark>Процесс</SectionLabel>
+          <SectionLabel>Как происходит работа</SectionLabel>
 
           <h2 className="mt-5 max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
-            От диагностики до работающей системы продаж
+            Не рекомендации в PDF. А внедрение в реальный бизнес.
           </h2>
 
-          <div className="mt-14 grid gap-px overflow-hidden border border-[#03190C]/10 bg-[#03190C]/10 md:grid-cols-4">
+          <div className="mt-14 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-4">
             {steps.map(([num, title, text]) => (
-              <div key={num} className="bg-[#F6F3EC] p-7">
-                <div className="font-serif text-5xl text-[#03190C]/20">
-                  {num}
-                </div>
+              <motion.div
+                key={num}
+                whileHover={{ y: -6 }}
+                className="bg-[#03190C] p-7"
+              >
+                <div className="font-serif text-5xl text-white/20">{num}</div>
 
-                <h3 className="mt-10 text-2xl font-medium">{title}</h3>
-                <p className="mt-5 leading-7 text-[#03190C]/65">{text}</p>
-              </div>
+                <h3 className="mt-10 text-2xl font-medium leading-tight">
+                  {title}
+                </h3>
+
+                <p className="mt-5 leading-7 text-white/62">{text}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </AnimatedSection>
 
-      <AnimatedSection id="lead" className="px-6 py-24 md:px-12 lg:px-20">
-        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.9fr_1.1fr]">
+      <AnimatedSection
+        id="lead"
+        className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.95fr_1.05fr]">
           <div>
-            <SectionLabel>Следующий шаг</SectionLabel>
+            <SectionLabel dark>Следующий шаг</SectionLabel>
 
             <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
-              Разберём вашу систему продаж и покажем точки роста
+              Ваш бизнес уже теряет деньги внутри отдела продаж.
             </h2>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/65">
-              На встрече определим ограничения, приоритеты внедрения и план
-              действий.
+            <p className="mt-6 max-w-xl text-2xl leading-10 text-[#03190C]/75">
+              Вопрос только в том — видите вы это или нет.
             </p>
+
+            <div className="mt-10 border-l border-[#03190C]/15 pl-6">
+              <p className="text-lg leading-8 text-[#03190C]/65">
+                Проведём аудит и покажем: где теряются лиды, почему падает
+                конверсия, что мешает масштабированию и какие изменения дадут
+                рост.
+              </p>
+            </div>
           </div>
 
           <motion.form
             whileHover={{ y: -4 }}
             onSubmit={handleSubmit}
-            className="border border-white/12 bg-white p-6 text-[#03190C] md:p-8"
+            className="border border-[#03190C]/10 bg-white p-6 text-[#03190C] md:p-8"
           >
             <div className="grid gap-5">
               <Input
@@ -358,7 +462,9 @@ export default function Home() {
             </button>
 
             {status === "success" && (
-              <p className="mt-4 text-sm text-[#03190C]">Заявка отправлена.</p>
+              <p className="mt-4 text-sm text-[#03190C]">
+                Заявка отправлена.
+              </p>
             )}
 
             {status === "error" && (
@@ -409,18 +515,6 @@ function SectionLabel({
       }`}
     >
       {children}
-    </div>
-  );
-}
-
-function CaseRow({ left, right }: { left: string; right: string }) {
-  return (
-    <div className="grid border-b border-[#03190C]/10 last:border-b-0 md:grid-cols-[0.35fr_0.65fr]">
-      <div className="border-b border-[#03190C]/10 p-6 text-sm uppercase tracking-[0.2em] text-[#03190C]/45 md:border-b-0 md:border-r">
-        {left}
-      </div>
-
-      <div className="p-6 text-lg leading-8 text-[#03190C]/75">{right}</div>
     </div>
   );
 }
