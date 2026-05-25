@@ -361,10 +361,10 @@ export default function Home() {
 
       <AnimatedSection className="px-6 py-24 md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
-          <SectionLabel>Как происходит работа</SectionLabel>
+        
 
           <h2 className="mt-5 max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
-            Не рекомендации в PDF. А внедрение в реальный бизнес.
+            Как происходит наша работа:
           </h2>
 
           <div className="mt-14 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-4">
