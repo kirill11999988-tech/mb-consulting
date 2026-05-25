@@ -160,42 +160,55 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="relative h-[620px] overflow-hidden rounded-[36px] bg-[#071F10]"
-            >
-              <img
-                src="/hero-photo.png"
-                alt="MB Consulting"
-                className="absolute bottom-0 left-1/2 h-[112%] max-w-none -translate-x-1/2 object-contain"
-              />
+  variants={fadeUp}
+  initial="hidden"
+  animate="visible"
+  transition={{ duration: 0.8, delay: 0.15 }}
+  className="relative h-[760px] overflow-hidden rounded-[42px] bg-[#071F10]"
+>
+  <img
+    src="/hero-photo.png"
+    alt="MB Consulting"
+    className="
+      absolute
+      bottom-0
+      left-1/2
+      w-[88%]
+      max-w-none
+      -translate-x-1/2
+      object-contain
+    "
+  />
 
-              <div className="absolute inset-0 bg-black/35" />
+  <div className="absolute inset-0 bg-black/25" />
 
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="max-w-sm rounded-[28px] border border-white/15 bg-white/10 p-6 backdrop-blur-md"
-                >
-                  <div className="text-sm uppercase tracking-[0.25em] text-white/60">
-                    MB Consulting
-                  </div>
+  <div className="absolute bottom-8 left-8 right-8">
+    <motion.div
+      whileHover={{ y: -4 }}
+      className="
+        max-w-md
+        rounded-[30px]
+        border
+        border-white/15
+        bg-white/10
+        p-7
+        backdrop-blur-xl
+      "
+    >
+      <div className="text-sm uppercase tracking-[0.3em] text-white/60">
+        MB CONSULTING
+      </div>
 
-                  <div className="mt-4 font-serif text-5xl text-white">
-                    18–25%
-                  </div>
+      <div className="mt-5 font-serif text-6xl text-white">
+        18–25%
+      </div>
 
-                  <p className="mt-3 text-white/75">
-                    средний рост конверсий после внедрения системы продаж
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <p className="mt-4 text-lg leading-8 text-white/75">
+        средний рост конверсий после внедрения системы продаж
+      </p>
+    </motion.div>
+  </div>
+</motion.div>
 
       <AnimatedSection className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
