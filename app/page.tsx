@@ -220,11 +220,11 @@ export default function Home() {
                   </div>
 
                   <div className="mt-5 font-serif text-5xl text-white">
-                    18–25%
+                    Убираем хаос из продаж
                   </div>
 
                   <p className="mt-4 text-lg leading-8 text-white/75">
-                    средний рост конверсий после внедрения системы продаж
+                    Возвращаем контроль над выручкой
                   </p>
                 </motion.div>
               </div>
@@ -238,7 +238,7 @@ export default function Home() {
         className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20"
       >
         <div className="mx-auto max-w-7xl">
-          <SectionLabel dark>Боль</SectionLabel>
+          
 
           <h2 className="mt-5 max-w-5xl font-serif text-4xl leading-tight md:text-6xl">
             Большинство компаний теряют деньги не в маркетинге. А внутри отдела
@@ -274,14 +274,14 @@ export default function Home() {
       <AnimatedSection className="px-6 py-24 md:px-12 lg:px-20">
         <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-[0.9fr_1.1fr] md:items-start">
           <div>
-            <SectionLabel>Позиционирование</SectionLabel>
+            <SectionLabel>Что мы делаем</SectionLabel>
 
             <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
               Мы не “обучаем продажам”.
             </h2>
 
             <p className="mt-6 max-w-xl text-2xl leading-10 text-white/78">
-              Мы перестраиваем систему, из-за которой бизнес теряет деньги.
+              Мы строим систему, в которой бизнес не теряет деньги.
             </p>
           </div>
 
@@ -339,10 +339,10 @@ export default function Home() {
       <AnimatedSection className="bg-[#F6F3EC] px-6 py-24 text-[#03190C] md:px-12 lg:px-20">
         <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <SectionLabel dark>Антирыночный блок</SectionLabel>
+            
 
             <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
-              Почему большинство внедрений продаж не работают
+              Почему большинство внедрений не работают
             </h2>
           </div>
 
